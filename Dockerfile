@@ -1,17 +1,17 @@
-FROM ubuntu:bionic
+FROM ubuntu:jammy
 
 RUN apt-get update
-RUN apt-get install -y unzip curl libcurl4 libssl1.0.0
+RUN apt-get install -y unzip curl libcurl4 libssl3
 RUN curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.19.73.02.zip --output bedrock-server.zip
 RUN unzip bedrock-server.zip -d bedrock-server
 RUN rm bedrock-server.zip
-RUN cd bedrock-server
-RUN mv server.properties server.properties.default
-RUN mv permissions.json permissions.json.default
-RUN mv whitelist.json whitelist.json.default
-RUN ln -s server.properties config/server.properties
-RUN ln -s permissions.json config/permissions.json
-RUN ln -s whitelist.json config/whitelist.json
+
+RUN mv bedrock-server/server.properties bedrock-server/config/server.properties
+RUN mv bedrock-server/permissions.json bedrock-server/config/permissions.json
+RUN mv bedrock-server/allowlist.json bedrock-server/config/allowlist.json
+RUN ln -s config/server.properties bedrock-server/server.properties
+RUN ln -s config/permissions.json bedrock-server/permissions.json
+RUN ln -s config/allowlist.json bedrock-server/allowlist.json
 
 
 WORKDIR /bedrock-server
