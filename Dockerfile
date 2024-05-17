@@ -2,7 +2,7 @@ FROM ubuntu:jammy
 
 RUN apt-get update
 RUN apt-get install -y unzip curl libcurl4 libssl3
-RUN curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.20.40.01.zip --output bedrock-server.zip
+RUN curl https://minecraft.azureedge.net/bin-linux/bedrock-server-1.20.81.01.zip --output bedrock-server.zip
 RUN unzip bedrock-server.zip -d bedrock-server
 RUN rm bedrock-server.zip
 
